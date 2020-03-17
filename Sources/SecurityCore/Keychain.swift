@@ -10,7 +10,7 @@ open class Keychain {
 
     public static let `default` = Keychain()
     
-    class func save(key: String, data: Data) -> OSStatus {
+    open class func save(key: String, data: Data) -> OSStatus {
         let query = [
             kSecClass as String       : kSecClassGenericPassword as String,
             kSecAttrAccount as String : key,
@@ -21,7 +21,7 @@ open class Keychain {
         return SecItemAdd(query as CFDictionary, nil)
     }
 
-    class func load(key: String) -> Data? {
+    open class func load(key: String) -> Data? {
         let query = [
             kSecClass as String       : kSecClassGenericPassword,
             kSecAttrAccount as String : key,
